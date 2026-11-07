@@ -1,0 +1,51 @@
+part_number,supplier,unit_cost,lead_time_days,moq,reliability
+BKR6E-11,Rhein Ignition GmbH,1.08,7,50,0.97
+BKR6E-11,Iberia Auto Supply S.L.,1.06,10,100,0.88
+BKR6E-11,Kanto Components Ltd,0.96,35,200,0.93
+BKR5E-11,Rhein Ignition GmbH,0.97,7,50,0.97
+BKR5E-11,Kanto Components Ltd,0.87,35,200,0.93
+BKR7E,Kanto Components Ltd,0.92,35,200,0.93
+BKR7E,Silesia Parts Sp. z o.o.,1.0,14,200,0.9
+ILKAR7B11,Rhein Ignition GmbH,4.15,7,50,0.97
+ILKAR7B11,Silesia Parts Sp. z o.o.,3.92,14,200,0.9
+ILZKR7B11,Iberia Auto Supply S.L.,4.34,10,100,0.88
+ILZKR7B11,Kanto Components Ltd,3.87,35,200,0.93
+ILZKR7B11,Silesia Parts Sp. z o.o.,4.17,14,200,0.9
+ILZKR7B11,Rhein Ignition GmbH,4.55,7,50,0.97
+ZFR6F-11,Silesia Parts Sp. z o.o.,1.08,14,200,0.9
+ZFR6F-11,Iberia Auto Supply S.L.,1.12,10,100,0.88
+ZFR6F-11,Kanto Components Ltd,1.01,35,200,0.93
+ZFR6F-11,Rhein Ignition GmbH,1.16,7,50,0.97
+ZSE-118,Kanto Components Ltd,13.13,35,200,0.93
+ZSE-118,Silesia Parts Sp. z o.o.,14.31,14,200,0.9
+ZSE-210,Silesia Parts Sp. z o.o.,17.19,14,200,0.9
+ZSE-210,Rhein Ignition GmbH,18.45,7,50,0.97
+ZSE-210,Iberia Auto Supply S.L.,17.49,10,100,0.88
+U5010,Kanto Components Ltd,19.15,35,200,0.93
+U5010,Silesia Parts Sp. z o.o.,20.46,14,200,0.9
+Y-1001AS,Iberia Auto Supply S.L.,2.54,10,100,0.88
+Y-1001AS,Rhein Ignition GmbH,2.73,7,50,0.97
+Y-1001AS,Kanto Components Ltd,2.45,35,200,0.93
+Y-1002AS,Iberia Auto Supply S.L.,2.87,10,100,0.88
+Y-1002AS,Rhein Ignition GmbH,3.15,7,50,0.97
+NTK-LZA09,Silesia Parts Sp. z o.o.,25.49,14,200,0.9
+NTK-LZA09,Rhein Ignition GmbH,27.35,7,50,0.97
+NTK-LZA09,Iberia Auto Supply S.L.,26.75,10,100,0.88
+NTK-LZA09,Kanto Components Ltd,24.78,35,200,0.93
+NTK-OZA-684,Kanto Components Ltd,29.42,35,200,0.93
+NTK-OZA-684,Iberia Auto Supply S.L.,32.74,10,100,0.88
+NTK-OZA-684,Rhein Ignition GmbH,33.99,7,50,0.97
+NTK-MAF22,Iberia Auto Supply S.L.,34.98,10,100,0.88
+NTK-MAF22,Silesia Parts Sp. z o.o.,35.0,14,200,0.9
+NTK-MAF22,Rhein Ignition GmbH,37.11,7,50,0.97
+NTK-MAP08,Iberia Auto Supply S.L.,18.23,10,100,0.88
+NTK-MAP08,Kanto Components Ltd,16.85,35,200,0.93
+NTK-NOX41,Rhein Ignition GmbH,120.88,7,50,0.97
+NTK-NOX41,Iberia Auto Supply S.L.,118.17,10,100,0.88
+NTK-NOX41,Silesia Parts Sp. z o.o.,115.43,14,200,0.9
+NTK-NOX41,Kanto Components Ltd,112.02,35,200,0.93
+NTK-EGR12,Silesia Parts Sp. z o.o.,64.5,14,200,0.9
+NTK-EGR12,Iberia Auto Supply S.L.,65.14,10,100,0.88
+NTK-EGR12,Rhein Ignition GmbH,66.97,7,50,0.97
+NTK-CPS05,Rhein Ignition GmbH,13.2,7,50,0.97
+NTK-CPS05,Kanto Components Ltd,11.61,35,200,0.93

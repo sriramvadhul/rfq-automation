@@ -1,0 +1,9 @@
+openpyxl>=3.1
+pdfplumber>=0.11
+python-dateutil>=2.9
+pandas>=2.0
+streamlit>=1.50
+reportlab>=4.0        # only to generate the fictional test RFQs
+# optional OCR for scanned PDFs (also install the Tesseract + Poppler programs on your OS):
+pytesseract>=0.3
+pdf2image>=1.17

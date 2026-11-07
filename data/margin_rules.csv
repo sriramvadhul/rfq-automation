@@ -1,0 +1,10 @@
+category,target_margin
+Spark plug,0.18
+Ignition coil,0.22
+Glow plug,0.2
+Lambda sensor,0.24
+MAF sensor,0.24
+MAP sensor,0.24
+NOx sensor,0.26
+EGR valve,0.22
+Position sensor,0.22

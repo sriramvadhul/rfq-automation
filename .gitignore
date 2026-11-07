@@ -1,0 +1,7 @@
+output/
+inbox/*
+!inbox/.gitkeep
+testset/
+__pycache__/
+*.pyc
+.venv/
