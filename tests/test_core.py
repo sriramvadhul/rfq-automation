@@ -94,7 +94,8 @@ def test_end_to_end_and_dedup():
     assert conn.execute("SELECT COUNT(*) FROM rfqs").fetchone()[0] == 6
     db.save_draft(conn, "RFQ-2026-3000", "edited"); db.set_human_status(conn, "RFQ-2026-3000", "Approved")
     assert conn.execute("SELECT COUNT(*) FROM feedback").fetchone()[0] == 1
-    shutil.rmtree(tmp)
+    conn.close()
+    shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_llm_fallback_with_mock_server():
@@ -119,24 +120,28 @@ def test_llm_fallback_with_mock_server():
     assert s["added"] == 1 and n_lines == len(gt["lines"]), (s, n_lines)
     assert "lines" in row["llm_fields"] and row["status"] == "Needs review"      # LLM output is always flagged
     assert row["requester"] == gt["requester_company"] and row["offer_value"] > 0
-    srv.shutdown(); shutil.rmtree(tmp)
+    conn.close(); srv.shutdown(); shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_ocr_on_scanned_pdf():
     import shutil as sh
-    if not sh.which("tesseract") or not sh.which("pdftoppm"):
-        print("SKIP test_ocr_on_scanned_pdf (Tesseract/Poppler not installed)"); return
-    from pdf2image import convert_from_path
+    import os
+    if not (sh.which("tesseract") or os.path.exists("C:/Program Files/Tesseract-OCR/tesseract.exe")):
+        print("SKIP test_ocr_on_scanned_pdf (Tesseract not installed)"); return
+    import io
+    import pymupdf
+    from PIL import Image
     from make_testset import generate
     from rfq_pipeline.extractor import extract_from_pdf
     tmp = Path(tempfile.mkdtemp()); truth = generate(3, tmp)
     pdf = tmp / "02_pdf.pdf"
-    convert_from_path(str(pdf), dpi=200)[0].convert("RGB").save(tmp / "scan.pdf", resolution=200)   # image only
+    png = pymupdf.open(str(pdf))[0].get_pixmap(dpi=200).tobytes("png")
+    Image.open(io.BytesIO(png)).convert("RGB").save(tmp / "scan.pdf", resolution=200)   # image only, no text layer
     r = extract_from_pdf(tmp / "scan.pdf")
     want = {(l["part_number"], l["quantity"]) for l in truth["02_pdf.pdf"]["lines"]}
     assert r.get("ocr_used") and {(l["part_number"], l["quantity"]) for l in r["lines"]} == want
     assert r["header"]["rfq_id"] == truth["02_pdf.pdf"]["rfq_id"]
-    shutil.rmtree(tmp)
+    shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_dashboard_sees_new_rfqs_live():
@@ -157,7 +162,7 @@ def test_dashboard_sees_new_rfqs_live():
     process_inbox(inbox, tmp / "rfq.db", tmp / "m.xlsx", use_llm=False, verbose=False)
     at.run()                                    # what the 5-second auto-refresh does
     assert dict((m.label, m.value) for m in at.metric)["RFQs processed"] == "6"
-    shutil.rmtree(tmp)
+    shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

@@ -46,7 +46,7 @@ In live mode, copy new RFQ files into `inbox/` and watch them appear in the dash
 Measure it: `python evaluate.py` (rules only) vs `python evaluate.py --llm`.
 
 ## Optional: OCR for scanned PDFs
-Install Tesseract and Poppler on your OS (add the German language pack for German scans). Scanned PDFs are then read automatically.
+Install the Tesseract program (add the German language pack for German scans) and `pip install pymupdf pytesseract`. No Poppler needed. Scanned PDFs are then read automatically.
 
 ## Optional: real mailbox
 Set `RFQ_IMAP_USER` and `RFQ_IMAP_PASSWORD` (Gmail app password), then `python main.py --watch --fetch-email`.
