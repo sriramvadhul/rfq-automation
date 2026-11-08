@@ -143,6 +143,25 @@ def test_ocr_on_scanned_pdf():
     assert r["header"]["rfq_id"] == truth["02_pdf.pdf"]["rfq_id"]
     shutil.rmtree(tmp, ignore_errors=True)
 
+def test_hard_testset_and_null_scoring():
+    from make_hard_testset import VARIANTS, eom_next, generate_hard
+    from evaluate import score_one
+    tmp = Path(tempfile.mkdtemp())
+    truth = generate_hard(2, tmp, today=date(2026, 11, 8))
+    assert len(truth) == 2 * len(VARIANTS) and (tmp / "ground_truth.json").exists()
+    assert eom_next(date(2026, 11, 8)) == date(2026, 12, 31) and eom_next(date(2026, 12, 8)) == date(2027, 1, 31)
+    short = next(g for g in truth.values() if g["format"] == "short")
+    assert short["deadline"] is None and short["requester_company"] is None      # "asap", no company stated
+    vague = next(g for g in truth.values() if g["format"] == "vague_date")
+    assert vague["deadline"] == "2026-12-31"
+    # correct answer scores fully; an invented value where the truth is null counts as wrong
+    gt = {"rfq_id": None, "requester_company": None, "contact_email": "a@b.test", "deadline": None,
+          "lines": [{"part_number": "BKR6E-11", "quantity": 500}]}
+    good = {"header": {"contact_email": "a@b.test"}, "lines": [{"part_number": "bkr6e 11", "quantity": 500}]}
+    assert all(score_one(good, gt)[0].values())
+    bad = {"header": {"contact_email": "a@b.test", "deadline": date(2026, 12, 1)}, "lines": good["lines"]}
+    assert score_one(bad, gt)[0]["deadline"] is False
+    shutil.rmtree(tmp, ignore_errors=True)
 
 def test_dashboard_sees_new_rfqs_live():
     from streamlit.testing.v1 import AppTest

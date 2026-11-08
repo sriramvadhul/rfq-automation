@@ -83,6 +83,16 @@ For each requested part: list suppliers -> drop those that cannot deliver by the
 **Caution:** the structured formats are my own templates, so 100% is optimistic. Real RFQs will be messier.
 Run `--llm` on your machine and add your own difficult examples to measure the true gain.
 
+## Harder test: realistic free-text emails
+```bash
+python make_hard_testset.py --n 5                      # 7 variants x 5 emails -> testset_hard/
+python evaluate.py --dir testset_hard                  # rules only (baseline)
+python evaluate.py --dir testset_hard --llm --details  # with the local LLM; lists every wrong field
+```
+Variants: very short, German free text, part numbers written differently, reply threads with an old
+quoted request, vague dates ("end of next month"), bullet lists, and long legal footers naming another
+company. Where an email does not state a value, the correct answer is *null*, and inventing a value counts as an error.
+
 ## Limitations and next steps
 - Prices are all in EUR; no FX conversion. Reference data is fictional - plug in real CSVs with the same columns.
 - Fuzzy matching and OCR can be wrong, which is why RFQs with LLM-filled or unmatched data are flagged.
